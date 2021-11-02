@@ -11,4 +11,4 @@ Route::view('/', 'products');
 
 Route::get('/products', [ProductController::class, 'index']);
 Route::post('/product', [ProductController::class, 'store'])->name('save-product');
-Route::get('fetch', [ProductController::class, 'fetch']);
+Route::get('fetch', [ProductController::class, 'fetch'])->name('fetch');

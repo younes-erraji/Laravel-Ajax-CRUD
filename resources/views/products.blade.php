@@ -20,10 +20,10 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container mt-4 mb-4">
 
       <div class="row mt-lg-4">
-        <div class="col-md-6">
+        <div class="col-md-6 mb-2">
           <div class="card">
             <div class="card-header bg-primary text-white pt-3 pb-3">add new product</div>
             <div class="card-body">
@@ -36,7 +36,7 @@
                   <span class="product_name_error text-danger error-text"></span>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="product_image" class="mb-1">product name</label>
+                  <label for="product_image" class="mb-1">product brand</label>
                   <input type="file" id="product_image" name="product_image" class="form-control" />
                   <span class="product_image_error text-danger error-text"></span>
                 </div>
@@ -58,6 +58,7 @@
           <div class="card">
             <div class="card-header bg-primary text-white pt-3 pb-3">products</div>
             <div class="card-body" id='products'>
+
 
 
             </div>
@@ -85,15 +86,18 @@
               $(form).find('span.error-text').text('');
             },
             success: function (data) {
+              console.log(data);
               if (data.code == 0) {
                 $.each(data.error, function (prefix, val) {
                   $(form).find('span.' + prefix + '_error').text(val[0]);
                 });
               } else {
                 $(form)[0].reset();
+                fetchProducts();
                 alert(data.message);
               }
-            }
+            },
+
           });
         });
 
@@ -108,7 +112,6 @@
               image_holder.empty();
               var reader = new FileReader();
               reader.onload = function (e) {
-                console.log(e.target.result);
                 $('<img />', { 'src': e.target.result, 'class': 'image-fluid' }).appendTo(image_holder);
               }
               image_holder.show();
@@ -117,15 +120,17 @@
               image_holder.text('This Browser does not support FileReader');
             }
           } else {
-            $(image_holder).empty();
+            image_holder.empty();
           }
         });
 
-        (function fetchProducts () {
-          $.get('{{ url('fetch') }}', {}, function (data) {
+        function fetchProducts () {
+          $.get('{{ route('fetch') }}', {}, function (data) {
             $('#products').html(data.result);
-          }, 'json')
-        })();
+          }, 'json');
+        }
+
+        fetchProducts ();
       });
     </script>
   </body>

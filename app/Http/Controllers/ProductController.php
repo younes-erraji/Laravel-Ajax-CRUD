@@ -17,24 +17,8 @@ class ProductController extends Controller
       'product_name' => 'required|max:220|string|unique:products,product_name',
       'product_image' => 'required|image|mimes:jpg,png,svg,jpeg',
       'product_description' => 'required|max:550',
-    ], [
-      'product_name.required' => 'Product name is required',
-      'product_image.required' => 'Product name is required',
-      'product_description.required' => 'Product name is required',
-
-      'product_name.string' => 'Product name must be a string',
-
-      'product_name.unique' => 'This product name is already exists',
-
-      'product_image.image' => 'Product image must be an image',
-
-      'product_image.mimes' => 'Product image must be a file of type: jpg, png, svg, jpeg.',
-
-      'product_name.max' => 'Product name must not be greater than 220.',
-      'product_description.max' => 'Product description must not be greater than 550.',
     ]);
 
-    // dd($validator->passes());
     if (!$validator->passes()) {
       return response()->json(['code' => 0, 'error' => $validator->errors()->toArray()]);
     } else {
@@ -64,6 +48,10 @@ class ProductController extends Controller
   public function fetch()
   {
     $products = Product::all()->sortByDesc('created_at');
-    return view('product', $products);
+    // return view('products', $products);
+    // $data = \View::make('products-table', ['products', $products])->render();
+    $data = \View::make('products-table')->with('products', $products)->render();
+    return response()->json(['code' => 1, 'result' => $data]);
+
   }
 }
