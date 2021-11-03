@@ -68,7 +68,6 @@
       $(function () {
         $('#main-form').on('submit', function (e) {
           e.preventDefault();
-          // alert('test');
 
           var form = this;
           $.ajax({
@@ -82,7 +81,6 @@
               $(form).find('span.error-text').text('');
             },
             success: function (data) {
-              console.log(data);
               if (data.code == 0) {
                 $.each(data.error, function (prefix, val) {
                   $(form).find('span.' + prefix + '_error').text(val[0]);
@@ -132,22 +130,20 @@
           var dataId = $(this).data('id'),
             url = "{{ route('getProductsDetails') }}";
           $.get(url, { product_id: dataId }, function (data) {
-            // console.log(data.result);
+
             var edit_modal = $('#editProduct');
             $(edit_modal).modal('show');
 
             $(edit_modal).find('form').find('input[name="product_id"]').val(data.result.id);
-            $(edit_modal).find('form').find('input[name="product_name"]').val(data.result.product_name);
+            $(edit_modal).find('form').find('input[name="product_name_update"]').val(data.result.product_name);
             //
             $(edit_modal).find('form').find('.image-holder-update').html('<img src="/storage/products/' + data.result.product_brand + '" class="image-fluid" />');
-            $(edit_modal).find('form').find('textarea[name="product_description"]').text(data.result.product_description);
+            $(edit_modal).find('form').find('textarea[name="product_description_update"]').text(data.result.product_description);
 
             $(edit_modal).find('form').find('input[name="product_image_update"]').attr('data-value', '<img src="/storage/products/' + data.result.product_brand + '" class="image-fluid" />');
             $(edit_modal).find('form').find('input[name="product_image_update"]').val('');
 
             $(edit_modal).find('form').find('span.error-text').text('');
-
-
           }, 'json');
         });
 
@@ -169,8 +165,6 @@
             } else {
               img_holder.text('This Browser does not support FileReader');
             }
-          } else {
-
           }
         });
 
@@ -180,7 +174,50 @@
           $(form).find('input[type="file"]').val('');
           $(form).find('.image-holder-update').html($(form).find('input[type="file"]').data('value'));
         });
+        /*
+        */
+        $('#update-form').on('submit', function (e) {
+          e.preventDefault();
 
+          var form = this;
+          $.ajax({
+            url: $(form).attr('action'),
+            method: $(form).attr('method'),
+            data: new FormData(form),
+            processData: false,
+            dataType: 'json',
+            contentType: false,
+            beforeSend: function () {
+              $(form).find('span.error-text').text('');
+            },
+            success: function (data) {
+              console.log('success');
+              if (data.code == 0) {
+                $.each(data.error, function (prefix, val) {
+                  $(form).find('span.' + prefix + '_error').text(val[0]);
+                });
+              } else {
+                alert(data.message);
+                fetchProducts();
+                $('#editProduct').modal('hide');
+                $(form)[0].reset();
+              }
+            },
+            error: function(xhr, status, error) {
+              console.log(error);
+            },
+            complete: function(xhr, status) {
+              console.log(`Complete`);
+            }
+          });
+        });
+
+        $(document).on('click', '.delete-button', function () {
+          var dataId = $(this).data('id'),
+            url = "{{ route('deleteProduct') }}";
+
+            console.log(dataId + ' - ' + url)
+        });
 
       });
     </script>

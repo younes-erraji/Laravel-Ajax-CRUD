@@ -21,7 +21,7 @@
     </tr>
     @empty
     <tr>
-      <th colspan="4" class="text-center">There's no data to show</th>
+      <th colspan="6" class="text-center">There's no data to show</th>
     </tr>
     @endforelse
   </tbody>
