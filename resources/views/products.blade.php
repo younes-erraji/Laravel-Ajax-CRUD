@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>Laravel CRUD Operation with Ajax</title>
-    <link rel="stylesheet" href="{{ asset('bootstrap.min.css') }}" />
+@extends('layouts.master')
+@section('title', '')
+@section('styles')
+<link rel="stylesheet" href="	https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" />
     <style>
       .image-fluid {
         max-width: 100%;
@@ -17,9 +11,8 @@
         margin-bottom: 10px
       }
     </style>
-  </head>
-
-  <body>
+@endsection
+@section('content')
     <div class="container mt-4 mb-4">
 
       <div class="row mt-lg-4">
@@ -66,8 +59,11 @@
         </div>
       </div>
     </div>
-
+@include('edit-product')
+@endsection
+@section('scripts')
     <script src="{{ asset('jquery.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
       $(function () {
         $('#main-form').on('submit', function (e) {
@@ -131,8 +127,61 @@
         }
 
         fetchProducts ();
+
+        $(document).on('click', '.edit-button', function () {
+          var dataId = $(this).data('id'),
+            url = "{{ route('getProductsDetails') }}";
+          $.get(url, { product_id: dataId }, function (data) {
+            // console.log(data.result);
+            var edit_modal = $('#editProduct');
+            $(edit_modal).modal('show');
+
+            $(edit_modal).find('form').find('input[name="product_id"]').val(data.result.id);
+            $(edit_modal).find('form').find('input[name="product_name"]').val(data.result.product_name);
+            //
+            $(edit_modal).find('form').find('.image-holder-update').html('<img src="/storage/products/' + data.result.product_brand + '" class="image-fluid" />');
+            $(edit_modal).find('form').find('textarea[name="product_description"]').text(data.result.product_description);
+
+            $(edit_modal).find('form').find('input[name="product_image_update"]').attr('data-value', '<img src="/storage/products/' + data.result.product_brand + '" class="image-fluid" />');
+            $(edit_modal).find('form').find('input[name="product_image_update"]').val('');
+
+            $(edit_modal).find('form').find('span.error-text').text('');
+
+
+          }, 'json');
+        });
+
+        $('input[type="file"][name="product_image_update"]').on('change', function () {
+          var img_path = $(this)[0].value,
+            img_holder = $('.image-holder-update'),
+            currentImagePath = $(this).data('value'),
+            extension = img_path.substring(img_path.lastIndexOf('.') + 1).toLowerCase();
+
+          if (extension === 'jpg' || extension === 'jpeg' || extension === 'png') {
+            if (typeof FileReader !== 'undefined') {
+              img_holder.empty();
+              var reader = new FileReader();
+              reader.onload = function (e) {
+                $('<img />', { 'src': e.target.result, 'class': 'image-fluid' }).appendTo(img_holder);
+              }
+              img_holder.show();
+              reader.readAsDataURL($(this)[0].files[0]);
+            } else {
+              img_holder.text('This Browser does not support FileReader');
+            }
+          } else {
+
+          }
+        });
+
+        $(document).on('click', '#clearInputFile', function () {
+          var form = $(this).closest('form');
+
+          $(form).find('input[type="file"]').val('');
+          $(form).find('.image-holder-update').html($(form).find('input[type="file"]').data('value'));
+        });
+
+
       });
     </script>
-  </body>
-
-</html>
+@endsection

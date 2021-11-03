@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use DB;
 
 class ProductController extends Controller
 {
@@ -47,11 +48,17 @@ class ProductController extends Controller
 
   public function fetch()
   {
-    $products = Product::all()->sortByDesc('created_at');
+    // $products = Product::all()->sortByDesc('created_at');
+    $products = DB::table('products')->paginate(5);
     // return view('products', $products);
     // $data = \View::make('products-table', ['products', $products])->render();
     $data = \View::make('products-table')->with('products', $products)->render();
     return response()->json(['code' => 1, 'result' => $data]);
 
+  }
+
+  function getProductsDetails() {
+   $product = Product::find(request()->product_id);
+    return response()->json(['code' => 1, 'result' => $product]);
   }
 }
