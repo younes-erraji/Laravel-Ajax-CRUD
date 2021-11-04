@@ -219,8 +219,7 @@
 
         $(document).on('click', '.delete-button', function () {
           var dataId = $(this).data('id'),
-            url = "{{ route('deleteProduct') }}",
-            csrf = $('meta[name="csrf-token"]').attr('content');
+            url = "{{ route('deleteProduct') }}";
             if (confirm ('Are You sure You wanna Delete this product')) {
               $.ajax({
                 headers: {

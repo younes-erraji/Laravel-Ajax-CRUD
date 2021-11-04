@@ -15,23 +15,49 @@
       </select>
     </div>
     <hr />
-    {{--
-    <div class="form-group">
-      <label for="cities">Cities</label>
-      <select id="cities" class="form-control" name="city">
-
-        @foreach($cities as $city)
-        <option value="{{ $city->code }}">{{ $city->name }}</option>
-        @endforeach
-
-      </select>
+    <div class="place-holder">
+      <div class="form-group">
+        <label for="cities">Cities</label>
+        <select id="cities" class="form-control" name="city"></select>
+      </div>
     </div>
-    --}}
-    @include('components.cities')
   </form>
 </div>
 
 @endsection
 @section('scripts')
 <script src="{{ asset('jquery.min.js') }}"></script>
+<script>
+  $(document).on('change', '#countries', function (e) {
+    var countryCode = e.target.value,
+      url = "{{ route('getCities') }}",
+      cities = $('#cities');
+
+      $.ajax({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: url,
+        method: 'POST',
+        data: {
+          code: countryCode,
+        },
+        dataType: 'json',
+        success: function (data) {
+          cities.empty();
+          cities.append('<option selected disabled>Choose...</option>');
+          if (data.code == 1) {
+            for (let i = 0; i < data.cities.length; i++) {
+              // console.log('<option value="' + data.cities[i].id + '"">' + data.cities[i].name + '</option>');
+              cities.append('<option value="' + data.cities[i].id + '"">' + data.cities[i].name + '</option>');
+            }
+
+          } else {
+            alert(data.message);
+          }
+
+        }
+      });
+  });
+</script>
 @endsection

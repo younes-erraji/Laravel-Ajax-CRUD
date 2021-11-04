@@ -15,9 +15,12 @@ class DropdownController extends Controller
     }
 
     public function getCities() {
-      $country_code = request()->country_code;
 
-      $cities = City::where('country_code', $country_code)->get();
-      return response()->json(['code' => 1, 'cities' => $cities]);
+      $cities = City::where('country_code', request()->code)->get();
+      if (count($cities) > 0) {
+        return response()->json(['code' => 1, 'cities' => $cities]);
+      } else {
+        return response()->json(['code' => 0, 'message' => "There's no data to show"]);
+      }
     }
 }
