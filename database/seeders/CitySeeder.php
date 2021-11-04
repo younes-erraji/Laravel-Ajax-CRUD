@@ -17,182 +17,156 @@ class CitySeeder extends Seeder
       City::query()->delete();
         $cities =  [
             [
-
                 'name' => 'Kabul',
                 'country_code' => 'AFG',
                 'district' => 'Kabol',
                 'population' => 1780000,
             ],
             [
-
                 'name' => 'Qandahar',
                 'country_code' => 'AFG',
                 'district' => 'Qandahar',
                 'population' => 237500,
             ],
             [
-
                 'name' => 'Herat',
                 'country_code' => 'AFG',
                 'district' => 'Herat',
                 'population' => 186800,
             ],
             [
-
                 'name' => 'Mazar-e-Sharif',
                 'country_code' => 'AFG',
                 'district' => 'Balkh',
                 'population' => 127800,
             ],
             [
-
                 'name' => 'Amsterdam',
                 'country_code' => 'NLD',
                 'district' => 'Noord-Holland',
                 'population' => 731200,
             ],
             [
-
                 'name' => 'Rotterdam',
                 'country_code' => 'NLD',
                 'district' => 'Zuid-Holland',
                 'population' => 593321,
             ],
             [
-
                 'name' => 'Haag',
                 'country_code' => 'NLD',
                 'district' => 'Zuid-Holland',
                 'population' => 440900,
             ],
             [
-
                 'name' => 'Utrecht',
                 'country_code' => 'NLD',
                 'district' => 'Utrecht',
                 'population' => 234323,
             ],
             [
-
                 'name' => 'Eindhoven',
                 'country_code' => 'NLD',
                 'district' => 'Noord-Brabant',
                 'population' => 201843,
             ],
             [
-
                 'name' => 'Tilburg',
                 'country_code' => 'NLD',
                 'district' => 'Noord-Brabant',
                 'population' => 193238,
             ],
             [
-
                 'name' => 'Groningen',
                 'country_code' => 'NLD',
                 'district' => 'Groningen',
                 'population' => 172701,
             ],
             [
-
                 'name' => 'Breda',
                 'country_code' => 'NLD',
                 'district' => 'Noord-Brabant',
                 'population' => 160398,
             ],
             [
-
                 'name' => 'Apeldoorn',
                 'country_code' => 'NLD',
                 'district' => 'Gelderland',
                 'population' => 153491,
             ],
             [
-
                 'name' => 'Nijmegen',
                 'country_code' => 'NLD',
                 'district' => 'Gelderland',
                 'population' => 152463,
             ],
             [
-
                 'name' => 'Enschede',
                 'country_code' => 'NLD',
                 'district' => 'Overijssel',
                 'population' => 149544,
             ],
             [
-
                 'name' => 'Haarlem',
                 'country_code' => 'NLD',
                 'district' => 'Noord-Holland',
                 'population' => 148772,
             ],
             [
-
                 'name' => 'Almere',
                 'country_code' => 'NLD',
                 'district' => 'Flevoland',
                 'population' => 142465,
             ],
             [
-
                 'name' => 'Arnhem',
                 'country_code' => 'NLD',
                 'district' => 'Gelderland',
                 'population' => 138020,
             ],
             [
-
                 'name' => 'Zaanstad',
                 'country_code' => 'NLD',
                 'district' => 'Noord-Holland',
                 'population' => 135621,
             ],
             [
-
                 'name' => '´s-Hertogenbosch',
                 'country_code' => 'NLD',
                 'district' => 'Noord-Brabant',
                 'population' => 129170,
             ],
             [
-
                 'name' => 'Amersfoort',
                 'country_code' => 'NLD',
                 'district' => 'Utrecht',
                 'population' => 126270,
             ],
             [
-
                 'name' => 'Maastricht',
                 'country_code' => 'NLD',
                 'district' => 'Limburg',
                 'population' => 122087,
             ],
             [
-
                 'name' => 'Dordrecht',
                 'country_code' => 'NLD',
                 'district' => 'Zuid-Holland',
                 'population' => 119811,
             ],
             [
-
                 'name' => 'Leiden',
                 'country_code' => 'NLD',
                 'district' => 'Zuid-Holland',
                 'population' => 117196,
             ],
             [
-
                 'name' => 'Haarlemmermeer',
                 'country_code' => 'NLD',
                 'district' => 'Noord-Holland',
                 'population' => 110722,
             ],
             [
-
                 'name' => 'Zoetermeer',
                 'country_code' => 'NLD',
                 'district' => 'Zuid-Holland',
@@ -17412,14 +17386,14 @@ class CitySeeder extends Seeder
                 'population' => 2940623,
             ],
             [
-                
+
                 'name' => 'Rabat',
                 'country_code' => 'MAR',
                 'district' => 'Rabat-Salé-Zammour-Z',
                 'population' => 623457,
             ],
             [
-                
+
                 'name' => 'Marrakech',
                 'country_code' => 'MAR',
                 'district' => 'Marrakech-Tensift-Al',
@@ -17684,182 +17658,156 @@ class CitySeeder extends Seeder
                 'population' => 721011,
             ],
             [
-
                 'name' => 'Tlalnepantla de Baz',
                 'country_code' => 'MEX',
                 'district' => 'México',
                 'population' => 720755,
             ],
             [
-
                 'name' => 'Mérida',
                 'country_code' => 'MEX',
                 'district' => 'Yucatán',
                 'population' => 703324,
             ],
             [
-
                 'name' => 'Chihuahua',
                 'country_code' => 'MEX',
                 'district' => 'Chihuahua',
                 'population' => 670208,
             ],
             [
-
                 'name' => 'San Luis Potosí',
                 'country_code' => 'MEX',
                 'district' => 'San Luis Potosí',
                 'population' => 669353,
             ],
             [
-
                 'name' => 'Guadalupe',
                 'country_code' => 'MEX',
                 'district' => 'Nuevo León',
                 'population' => 668780,
             ],
             [
-
                 'name' => 'Toluca',
                 'country_code' => 'MEX',
                 'district' => 'México',
                 'population' => 665617,
             ],
             [
-
                 'name' => 'Aguascalientes',
                 'country_code' => 'MEX',
                 'district' => 'Aguascalientes',
                 'population' => 643360,
             ],
             [
-
                 'name' => 'Querétaro',
                 'country_code' => 'MEX',
                 'district' => 'Querétaro de Arteaga',
                 'population' => 639839,
             ],
             [
-
                 'name' => 'Morelia',
                 'country_code' => 'MEX',
                 'district' => 'Michoacán de Ocampo',
                 'population' => 619958,
             ],
             [
-
                 'name' => 'Hermosillo',
                 'country_code' => 'MEX',
                 'district' => 'Sonora',
                 'population' => 608697,
             ],
             [
-
                 'name' => 'Saltillo',
                 'country_code' => 'MEX',
                 'district' => 'Coahuila de Zaragoza',
                 'population' => 577352,
             ],
             [
-
                 'name' => 'Torreón',
                 'country_code' => 'MEX',
                 'district' => 'Coahuila de Zaragoza',
                 'population' => 529093,
             ],
             [
-
                 'name' => 'Centro (Villahermosa)',
                 'country_code' => 'MEX',
                 'district' => 'Tabasco',
                 'population' => 519873,
             ],
             [
-
                 'name' => 'San Nicolás de los Garza',
                 'country_code' => 'MEX',
                 'district' => 'Nuevo León',
                 'population' => 495540,
             ],
             [
-
                 'name' => 'Durango',
                 'country_code' => 'MEX',
                 'district' => 'Durango',
                 'population' => 490524,
             ],
             [
-
                 'name' => 'Chimalhuacán',
                 'country_code' => 'MEX',
                 'district' => 'México',
                 'population' => 490245,
             ],
             [
-
                 'name' => 'Tlaquepaque',
                 'country_code' => 'MEX',
                 'district' => 'Jalisco',
                 'population' => 475472,
             ],
             [
-
                 'name' => 'Atizapán de Zaragoza',
                 'country_code' => 'MEX',
                 'district' => 'México',
                 'population' => 467262,
             ],
             [
-
                 'name' => 'Veracruz',
                 'country_code' => 'MEX',
                 'district' => 'Veracruz',
                 'population' => 457119,
             ],
             [
-
                 'name' => 'Cuautitlán Izcalli',
                 'country_code' => 'MEX',
                 'district' => 'México',
                 'population' => 452976,
             ],
             [
-
                 'name' => 'Irapuato',
                 'country_code' => 'MEX',
                 'district' => 'Guanajuato',
                 'population' => 440039,
             ],
             [
-
                 'name' => 'Tuxtla Gutiérrez',
                 'country_code' => 'MEX',
                 'district' => 'Chiapas',
                 'population' => 433544,
             ],
             [
-
                 'name' => 'Tultitlán',
                 'country_code' => 'MEX',
                 'district' => 'México',
                 'population' => 432411,
             ],
             [
-
                 'name' => 'Reynosa',
                 'country_code' => 'MEX',
                 'district' => 'Tamaulipas',
                 'population' => 419776,
             ],
             [
-
                 'name' => 'Benito Juárez',
                 'country_code' => 'MEX',
                 'district' => 'Quintana Roo',
                 'population' => 419276,
             ],
             [
-
                 'name' => 'Matamoros',
                 'country_code' => 'MEX',
                 'district' => 'Tamaulipas',

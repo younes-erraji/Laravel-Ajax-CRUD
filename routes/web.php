@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\{
+  ProductController, DropdownController
+};
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -8,6 +10,9 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::view('/', 'products');
+// Route::view('/dropdown', 'dropdown');
+Route::get('/dropdown', [DropdownController::class, 'index']);
+Route::post('/getCities', [DropdownController::class, 'getCities'])->name('getCities');
 
 Route::get('/products', [ProductController::class, 'index']);
 Route::post('/product', [ProductController::class, 'store'])->name('save-product');
