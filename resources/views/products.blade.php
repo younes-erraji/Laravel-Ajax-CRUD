@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@section('title', '')
 @section('styles')
 <link rel="stylesheet" href="	https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" />
     <style>
@@ -212,15 +211,36 @@
           });
         });
 
+        // $.ajaxSetup({
+        //     headers: {
+        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //     }
+        // });
+
         $(document).on('click', '.delete-button', function () {
           var dataId = $(this).data('id'),
-            url = "{{ route('deleteProduct') }}";
-            if(confirm ('Are You sure You wanna Delete this product')) {
+            url = "{{ route('deleteProduct') }}",
+            csrf = $('meta[name="csrf-token"]').attr('content');
+            if (confirm ('Are You sure You wanna Delete this product')) {
               $.ajax({
-                header: {
+                headers: {
+                  'X-CSRF-TOKEN': csrf
+                },
+                url: url,
+                method: 'POST',
+                data: {
+                  product_id: dataId,
+                },
+                dataType: 'json',
+                success: function (data) {
+                  if (data.code == 1) {
+                    fetchProducts();
+                  } else {
+                    alert(data.msg);
+                  }
 
                 }
-              })
+              });
             }
         });
 

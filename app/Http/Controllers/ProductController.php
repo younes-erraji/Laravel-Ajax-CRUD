@@ -104,6 +104,18 @@ class ProductController extends Controller
     }
 
     public function destroy() {
+      $product = Product::find(request()->product_id);
+      $path = 'products/';
+      $image_path = $path . $product->product_brand;
+      if ($product->product_image != null && \Storage::disk('public')->exists($image_path)) {
+        \Storage::disk('public')->delete($image_path);
+      }
 
+      $query = $product->delete();
+      if ($query) {
+        return response()->json(['code' => 1, 'message' => 'This product has been deleted successfully']);
+      } else {
+        return response()->json(['code' => 0, 'message' => 'Something went wrong!']);;
+      }
     }
 }
