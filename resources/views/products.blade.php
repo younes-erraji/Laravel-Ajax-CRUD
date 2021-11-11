@@ -173,8 +173,7 @@
           $(form).find('input[type="file"]').val('');
           $(form).find('.image-holder-update').html($(form).find('input[type="file"]').data('value'));
         });
-        /*
-        */
+
         $('#update-form').on('submit', function (e) {
           e.preventDefault();
 
